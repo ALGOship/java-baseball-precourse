@@ -21,7 +21,7 @@ public class Ball {
 
     private void validateNo(int no) {
         if (no < GameRule.MIN_BALL_NO || GameRule.MAX_BALL_NO < no) {
-            throw new IllegalArgumentException(GameRule.MIN_BALL_NO + "이상 " +  GameRule.MAX_BALL_NO + " 이하의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(GameRule.MIN_BALL_NO + "이상 " + GameRule.MAX_BALL_NO + " 이하의 숫자를 입력해주세요.");
         }
     }
 
@@ -32,7 +32,7 @@ public class Ball {
 
     private void validatePosition(int position) {
         if (position < GameRule.MIN_BALL_POS || GameRule.MAX_BALL_POS < position) {
-            throw new IllegalArgumentException(GameRule.MIN_BALL_POS + "이상 " +  GameRule.MAX_BALL_POS + " 이하의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(GameRule.MIN_BALL_POS + "이상 " + GameRule.MAX_BALL_POS + " 이하의 숫자를 입력해주세요.");
         }
     }
 
@@ -56,4 +56,5 @@ public class Ball {
     public int hashCode() {
         return Objects.hash(getNo(), getPosition());
     }
+
 }

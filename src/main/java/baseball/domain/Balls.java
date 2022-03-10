@@ -2,6 +2,7 @@ package baseball.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Balls {
 
@@ -30,6 +31,10 @@ public class Balls {
 
     public List<Ball> toList() {
         return balls;
+    }
+
+    public Optional<Ball> get(int position) {
+        return balls.stream().filter(ball -> ball.getPosition() == position).findFirst();
     }
 
 }
