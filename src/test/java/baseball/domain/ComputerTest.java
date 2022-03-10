@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import baseball.constant.GameRule;
+import baseball.service.Computer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;

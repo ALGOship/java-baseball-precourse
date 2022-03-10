@@ -1,10 +1,11 @@
 package baseball;
 
 import baseball.controller.BaseBallGame;
-import baseball.service.CalculatorImpl;
+import baseball.service.Computer;
 
 public class Application {
     public static void main(String[] args) {
-        BaseBallGame.start(new CalculatorImpl());
+        BaseBallGame baseBallGame = new BaseBallGame();
+        baseBallGame.start(Computer.generateBalls());
     }
 }

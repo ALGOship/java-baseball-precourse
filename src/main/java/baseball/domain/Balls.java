@@ -2,7 +2,8 @@ package baseball.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
+import static baseball.constant.GameRule.MAX_BALL_POS;
 
 public class Balls {
 
@@ -21,6 +22,9 @@ public class Balls {
         if (ints.isEmpty()) {
             throw new IllegalArgumentException("숫자를 입력해주세요");
         }
+        if (ints.size() != MAX_BALL_POS) {
+            throw new IllegalArgumentException(MAX_BALL_POS + "개의 숫자를 입력해주세요");
+        }
     }
 
     private void setBalls(List<Integer> ints) {
@@ -33,8 +37,14 @@ public class Balls {
         return balls;
     }
 
-    public Optional<Ball> get(int position) {
-        return balls.stream().filter(ball -> ball.getPosition() == position).findFirst();
+    public Ball get(int position) {
+        try {
+            return balls.stream().filter(ball -> ball.getPosition() == position).findFirst().get();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            throw new NullPointerException("position 확인 ," + position);
+
+        }
     }
 
 }

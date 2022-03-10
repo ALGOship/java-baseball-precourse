@@ -1,12 +1,10 @@
 package baseball.service;
 
 import baseball.domain.Balls;
-import baseball.domain.Score;
-
-import java.util.List;
+import baseball.domain.Scores;
 
 public interface Calculator {
 
-    List<Score> getScores(Balls ComputerBalls, Balls playerBalls);
+    Scores getScores(Balls ComputerBalls, Balls playerBalls);
 
 }

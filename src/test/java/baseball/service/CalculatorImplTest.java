@@ -2,6 +2,7 @@ package baseball.service;
 
 import baseball.domain.Balls;
 import baseball.domain.Score;
+import baseball.domain.Scores;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,15 +33,11 @@ class CalculatorImplTest {
         playerBalls = Balls.valueOf(new ArrayList(Arrays.asList(1, 8, 4)));
 
         // when
-        List<Score> scores = calculator.getScores(computerBalls, playerBalls);
+        Scores scores = calculator.getScores(computerBalls, playerBalls);
 
         // then
-        long strike = scores.stream().filter(score -> score == STRIKE).count();
-        long ball = scores.stream().filter(score -> score == BALL).count();
-        long nothing = scores.stream().filter(score -> score == NOTHING).count();
-        assertThat(strike).isEqualTo(0);
-        assertThat(ball).isEqualTo(0);
-        assertThat(nothing).isEqualTo(3);
+        assertThat(scores.getStrike()).isEqualTo(0);
+        assertThat(scores.getBall()).isEqualTo(0);
     }
 
     @Test
@@ -49,11 +46,10 @@ class CalculatorImplTest {
         playerBalls = Balls.valueOf(new ArrayList(Arrays.asList(1, 5, 8)));
 
         // when
-        List<Score> scores = calculator.getScores(computerBalls, playerBalls);
+        Scores scores = calculator.getScores(computerBalls, playerBalls);
 
         // then
-        long ball = scores.stream().filter(score -> score == BALL).count();
-        assertThat(ball).isEqualTo(1);
+        assertThat(scores.getBall()).isEqualTo(1);
     }
 
     @Test
@@ -62,11 +58,10 @@ class CalculatorImplTest {
         playerBalls = Balls.valueOf(new ArrayList(Arrays.asList(5, 4, 7)));
 
         // when
-        List<Score> scores = calculator.getScores(computerBalls, playerBalls);
+        Scores scores = calculator.getScores(computerBalls, playerBalls);
 
         // then
-        long strike = scores.stream().filter(score -> score == STRIKE).count();
-        assertThat(strike).isEqualTo(1);
+        assertThat(scores.getStrike()).isEqualTo(1);
     }
 
     @Test
@@ -75,14 +70,10 @@ class CalculatorImplTest {
         playerBalls = Balls.valueOf(new ArrayList(Arrays.asList(9, 3, 5)));
 
         // when
-        List<Score> scores = calculator.getScores(computerBalls, playerBalls);
+        Scores scores = calculator.getScores(computerBalls, playerBalls);
 
         // then
-        long strike = scores.stream().filter(score -> score == STRIKE).count();
-        long ball = scores.stream().filter(score -> score == BALL).count();
-        long nothing = scores.stream().filter(score -> score == NOTHING).count();
-        assertThat(strike).isEqualTo(1);
-        assertThat(ball).isEqualTo(2);
-        assertThat(nothing).isEqualTo(0);
+        assertThat(scores.getStrike()).isEqualTo(1);
+        assertThat(scores.getBall()).isEqualTo(2);
     }
 }

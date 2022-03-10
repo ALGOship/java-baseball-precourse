@@ -3,6 +3,7 @@ package baseball.service;
 import baseball.domain.Ball;
 import baseball.domain.Balls;
 import baseball.domain.Score;
+import baseball.domain.Scores;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,33 +16,24 @@ import static baseball.domain.Score.*;
 public class CalculatorImpl implements Calculator {
 
     @Override
-    public List<Score> getScores(Balls computerBalls, Balls playerBalls) {
+    public Scores getScores(Balls computerBalls, Balls playerBalls) {
         List<Score> scores = new ArrayList<>();
 
         for (int i = MIN_BALL_POS; i <= MAX_BALL_POS; i++) {
-            Optional<Ball> playerBall = playerBalls.get(i);
-            if (!playerBall.isPresent()) continue;
-            Score score = getScore(computerBalls, playerBall.get());
+            Ball playerBall = playerBalls.get(i);
+            Score score = getScore(computerBalls, playerBall);
             scores.add(score);
         }
 
-        validateCompare(scores);
-        return scores;
-    }
-
-    private void validateCompare(List<Score> scores) {
-        if (scores.size() != MAX_BALL_POS) {
-            throw new IllegalStateException("비교중 누락된 Ball 발생");
-        }
+        return Scores.of(scores);
     }
 
     private Score getScore(Balls computerBalls, Ball playerBall) {
         Score score = NOTHING;
 
         for (int i = MIN_BALL_POS; i <= MAX_BALL_POS; i++) {
-            Optional<Ball> computerBall = computerBalls.get(i);
-            if (!computerBall.isPresent()) continue;
-            Score currentScore = getScore(computerBall.get(), playerBall);
+            Ball computerBall = computerBalls.get(i);
+            Score currentScore = getScore(computerBall, playerBall);
             score = score.compare(currentScore);
         }
 

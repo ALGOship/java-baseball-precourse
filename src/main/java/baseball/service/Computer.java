@@ -1,11 +1,15 @@
-package baseball.domain;
+package baseball.service;
 
 import baseball.constant.GameRule;
+import baseball.domain.Balls;
 import nextstep.utils.Randoms;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import static baseball.domain.Status.PLAY;
+import static baseball.domain.Status.STOP;
 
 public class Computer {
 
